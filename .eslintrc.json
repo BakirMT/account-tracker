@@ -37,7 +37,8 @@
     "node_modules/",
     ".next/",
     "out/",
-    "public/"
+    "public/",
+    "Desktop/"
   ],
   "env": {
     "browser": true,
