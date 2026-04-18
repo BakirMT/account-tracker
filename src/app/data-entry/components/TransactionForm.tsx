@@ -396,7 +396,7 @@ export default function TransactionForm({ onSuccess, editingTransaction = null, 
           </button>
         </div>
 
-        // Quick reference removed
+        
       </form>
     </div>
   );
