@@ -11,7 +11,7 @@ import {
   Legend,
 } from 'recharts';
 import { supabase } from '@/lib/supabase';
-import { startOfDay, subDays, format } from 'date-fns';
+import { subDays, format } from 'date-fns';
 import { useAuth } from '@/lib/authContext';
 
 interface CustomTooltipProps {
@@ -58,7 +58,7 @@ export default function TransactionVolumeChart() {
       const { data: txns } = await query;
       if (!txns) return;
 
-      const days = [];
+      const days: { date: string; income: number; expense: number }[] = [];
       const today = new Date();
       for (let i = 13; i >= 0; i--) {
         const d = subDays(today, i);

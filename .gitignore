@@ -29,6 +29,9 @@ Thumbs.db
 coverage/
 jest-test-results.json
 
+# Accidental nested copy of the project (breaks builds if committed)
+Desktop/
+
 # Optional: if using IDEs
 .vscode/
 .idea/
