@@ -8,9 +8,9 @@ import { createClient } from '@supabase/supabase-js';
 // and creates an auth session for the newly created user in THIS client instance. 
 // It DOES NOT affect the browser session because it's a server-side fetch.
 const supabase = createClient(
-  'https://qgztivyxegjggcspuuqj.supabase.co',
-  'sb_publishable_9e_LpZxMdKhVgtmoRefARA_3j-itnWX',
-  { auth: { persistSession: false } }
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  { auth: { persistSession: false } } // Don't persist session in memory on server
 );
 
 export async function POST(request: Request) {
