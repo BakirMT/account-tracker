@@ -1,20 +1,27 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
-// We create a fresh stateless client for the server route.
-// Using the anon key means we are limited by RLS, but since we just need to call signUp
-// and then insert into students, this will work. 
-// NOTE: `supabase.auth.signUp()` automatically confirms the user if email confirmations are off, 
-// and creates an auth session for the newly created user in THIS client instance. 
-// It DOES NOT affect the browser session because it's a server-side fetch.
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-  { auth: { persistSession: false } } // Don't persist session in memory on server
-);
+// Ensure this route is always evaluated at request time so build-time page data
+// collection does not attempt to construct the Supabase client.
+export const dynamic = 'force-dynamic';
+
+let supabaseClient: SupabaseClient | null = null;
+function getSupabase(): SupabaseClient {
+  if (supabaseClient) return supabaseClient;
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !key) {
+    throw new Error(
+      'Missing Supabase env vars: NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY'
+    );
+  }
+  supabaseClient = createClient(url, key, { auth: { persistSession: false } });
+  return supabaseClient;
+}
 
 export async function POST(request: Request) {
   try {
+    const supabase = getSupabase();
     const body = await request.json();
     const { studentNumber, name, email, classLevel, section, enrolledDate } = body;
 
