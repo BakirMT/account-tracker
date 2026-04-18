@@ -400,7 +400,7 @@ export default function TransactionForm({ onSuccess, editingTransaction = null, 
         <div className="pt-2 border-t border-slate-100">
           <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">Quick Reference — Student Numbers</p>
           <div className="grid grid-cols-2 gap-1">
-            {['STU-1001 — Aiden Park', 'STU-1002 — Brianna Torres', 'STU-1042 — James Okonkwo', 'STU-1078 — Sofia Ramirez'].map((hint, i) => (
+            {['170 — BAKHIR MT', '455 — BINBAZ', '166 — NIHAL KC', '197 — NISHAN M'].map((hint, i) => (
               <button
                 key={`hint-${i}`}
                 type="button"
