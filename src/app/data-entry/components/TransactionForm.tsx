@@ -396,22 +396,7 @@ export default function TransactionForm({ onSuccess, editingTransaction = null, 
           </button>
         </div>
 
-        {/* Quick reference */}
-        <div className="pt-2 border-t border-slate-100">
-          <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">Quick Reference — Student Numbers</p>
-          <div className="grid grid-cols-2 gap-1">
-            {['170 — BAKHIR MT', '455 — BINBAZ', '166 — NIHAL KC', '197 — NISHAN M'].map((hint, i) => (
-              <button
-                key={`hint-${i}`}
-                type="button"
-                onClick={() => setValue('studentNumber', hint.split(' — ')[0])}
-                className="text-left text-xs text-blue-600 hover:text-blue-800 font-mono bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded transition-colors truncate"
-              >
-                {hint}
-              </button>
-            ))}
-          </div>
-        </div>
+        // Quick reference removed
       </form>
     </div>
   );
